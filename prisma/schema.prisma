@@ -1,0 +1,24 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model User {
+  id Int @id @default(autoincrement())
+
+  name          String // name: Name of the user - FullName
+  username      String   @unique // username: username of the user - unique
+  email         String   @unique // email: email of the user 
+  password      String // password: password of the user 
+  goal          String // goal: goal of the user to join the sou-sou platform 
+  status        String   @default("JOB") // status: status of the user - e.x: student, job
+  finance_level String   @default("MID") // finance_level: finance_level of the user - e.x: low, mid, high
+  createdAt     DateTime @default(now())
+}
